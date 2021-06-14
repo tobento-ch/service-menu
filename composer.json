@@ -1,0 +1,47 @@
+{
+    "name": "tobento/service-menu",
+    "type": "library",
+    "description": "A simple and fluent menu builder.",
+    "keywords": [
+        "tobento",
+        "package",
+        "menu",
+        "navigation",
+        "html menu builder"
+    ],
+    "homepage": "https://www.tobento.ch",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Strub",
+            "email": "info@tobento.ch",
+            "homepage": "https://www.tobento.ch"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.0",
+        "tobento/service-treeable": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4.0",
+        "phpstan/phpstan": "^0.12.89"
+    },    
+    "autoload": {
+        "psr-4": {
+            "Tobento\\Service\\Menu\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tobento\\Service\\Menu\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --testdox --colors=always",
+        "phpstan": "phpstan analyse --level max src/",
+        "psalm": "vendor/bin/psalm"
+    }
+}
