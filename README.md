@@ -494,8 +494,8 @@ $menus->get('main');
 
 // Get the main menu. If it does not exist, it creates a new one.
 $menus->menu('main')
-	  ->item('about')
-	  ->order(1000);
+      ->item('about')
+      ->order(1000);
 ```
 
 ## Examples
