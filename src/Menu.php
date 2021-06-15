@@ -229,8 +229,8 @@ class Menu implements MenuInterface
      */
     public function active(string|int $id): static
     {
-        $this->tree[$id] = function($tree) use ($id) {
-            $tree->parents($id, function($item) {
+        $this->tree[$id] = function(Tree $tree) use ($id): void {
+            $tree->parents($id, function(ItemInterface $item): ItemInterface {
                 return $item->active();
             });            
         };
@@ -247,9 +247,9 @@ class Menu implements MenuInterface
     public function subitems(bool $withSubitems = true): static
     {    
         if (!$withSubitems) {
-            $this->tree['__withSubitems'] = function($tree) {
+            $this->tree['__withSubitems'] = function(Tree $tree): void {
 
-                $tree->each(function($item) {
+                $tree->each(function(ItemInterface $item): null|ItemInterface {
 
                     if ($item->getTreeParentItem() && !$item->getTreeParentItem()->isActive()) {
                         return null;
@@ -273,7 +273,7 @@ class Menu implements MenuInterface
     public function render(): string
     {        
         // Handle on callables
-        $this->each(function($item, $menu) {
+        $this->each(function(ItemInterface $item, MenuInterface $menu): null|ItemInterface {
             if (isset($this->on[$item->getTreeId()])) {
                 foreach($this->on[$item->getTreeId()] as $callable) {
                     if (is_null($item = call_user_func_array($callable, [$item, $menu]))) {
@@ -285,7 +285,7 @@ class Menu implements MenuInterface
             if (isset($this->onParents[$item->getTreeId()])) {
                 foreach($this->onParents[$item->getTreeId()] as $callable) {
                     
-                    $traverseParent = function($item, $menu) use ($callable, &$traverseParent) {
+                    $traverseParent = function(ItemInterface $item, MenuInterface $menu) use ($callable, &$traverseParent): void {
                         
                         call_user_func_array($callable, [$item, $menu]);
                         
@@ -302,7 +302,7 @@ class Menu implements MenuInterface
         });
         
         // Traverse items.
-        $traverse = function(array $items, int $level) use (&$traverse) {
+        $traverse = function(array $items, int $level) use (&$traverse): string {
             
             $tag = (new Tag('ul'))->level($level);            
             $tag = $this->handleTag($tag);
