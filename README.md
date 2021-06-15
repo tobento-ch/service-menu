@@ -399,7 +399,7 @@ $menu->tag('ul')->level(1)->class('foo');
 // add class foo to every li tag.
 $menu->tag('li')->class('foo');
 
-// add class foo and bar only to every litag with depth level 2.
+// add class foo and bar only to every li tag with depth level 2.
 $menu->tag('li')->level(2)->class('foo')->class('bar');
 
 // add any attribute with the attr() method.
