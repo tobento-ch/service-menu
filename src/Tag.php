@@ -57,10 +57,10 @@ class Tag
     /**
      * Create a new Tag
      *
-     * @param string The tag name such as 'li'
-     * @param string The tag content
-     * @param null|Attributes
-     * @param null|int The level depth of the tag
+     * @param string $name The tag name such as 'li'
+     * @param string $content The tag content
+     * @param null|Attributes $attributes
+     * @param null|int $level The level depth of the tag
      */
     public function __construct(
         string $name,
@@ -77,7 +77,7 @@ class Tag
     /**
      * Set the content of the tag.
      *
-     * @param string
+     * @param string $content
      * @return static $this
      */    
     public function content(string $content): static
@@ -89,7 +89,7 @@ class Tag
     /**
      * Prepend content.
      *
-     * @param string
+     * @param string $content
      * @return static $this
      */    
     public function prepend(string $content): static
@@ -101,7 +101,7 @@ class Tag
     /**
      * Append content.
      *
-     * @param string
+     * @param string $content
      * @return static $this
      */    
     public function append(string $content): static
@@ -113,7 +113,7 @@ class Tag
     /**
      * Set the level depth of the tag.
      *
-     * @param int
+     * @param int $level
      * @return static $this
      */    
     public function level(int $level): static
@@ -185,8 +185,8 @@ class Tag
     /**
      * Set an attribute.
      *
-     * @param string
-     * @param mixed
+     * @param string $name
+     * @param mixed $value
      * @return static $this
      */    
     public function attr(string $name, mixed $value): static
@@ -198,7 +198,7 @@ class Tag
     /**
      * Add an class to the attributes.
      *
-     * @param string
+     * @param string $value
      * @return static $this
      */    
     public function class(string $value): static
@@ -220,7 +220,7 @@ class Tag
     /**
      * Handle Tag
      *
-     * @param callable
+     * @param callable $callable
      * @return static $this
      */    
     public function handle(callable $callable): static

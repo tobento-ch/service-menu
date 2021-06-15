@@ -23,7 +23,7 @@ interface ItemInterface extends Treeable
     /**
      * Set/Get the parent tag.
      *
-     * @param null|Tag
+     * @param null|Tag $tag
      * @return null|Tag
      */    
     public function parentTag(?Tag $tag = null): ?Tag;
@@ -31,7 +31,7 @@ interface ItemInterface extends Treeable
     /**
      * Set/Get the item tag.
      *
-     * @param null|Tag
+     * @param null|Tag $tag
      * @return Tag
      */    
     public function itemTag(?Tag $tag = null): Tag;
@@ -39,7 +39,7 @@ interface ItemInterface extends Treeable
     /**
      * Set if the item is active.
      *
-     * @param bool
+     * @param bool $active
      * @return static $this
      */    
     public function active(bool $active = true): static;
@@ -54,7 +54,7 @@ interface ItemInterface extends Treeable
     /**
      * Set if the item is disabled.
      *
-     * @param bool
+     * @param bool $disabled
      * @return static $this
      */    
     public function disabled(bool $disabled = true): static;

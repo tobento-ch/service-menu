@@ -21,7 +21,7 @@ class Attributes
     /**
      * Create a new Attributes
      *
-     * @param array
+     * @param array $attributes
      */
     public function __construct(
         protected array $attributes = []
@@ -40,7 +40,7 @@ class Attributes
     /**
      * If an attribute exists.
      *
-     * @param string The name.
+     * @param string $name The name.
      * @return bool True if exist, else false.
      */
     public function has(string $name): bool
@@ -51,7 +51,7 @@ class Attributes
     /**
      * Get an attribute
      *
-     * @param string
+     * @param string $name
      * @return mixed
      */
     public function get(string $name): mixed
@@ -62,8 +62,8 @@ class Attributes
     /**
      * Set an attribute
      *
-     * @param string
-     * @param mixed
+     * @param string $name
+     * @param mixed $value
      * @return static $this
      */
     public function set(string $name, mixed $value): static
@@ -75,8 +75,8 @@ class Attributes
     /**
      * Add an attribute
      *
-     * @param string
-     * @param mixed
+     * @param string $name
+     * @param mixed $value
      * @return static $this
      */
     public function add(string $name, mixed $value): static
@@ -98,7 +98,7 @@ class Attributes
     /**
      * Merge attributes
      *
-     * @param array The attributes to merge
+     * @param array $attributes The attributes to merge
      * @return static $this
      */
     public function merge(array $attributes): static
@@ -164,7 +164,7 @@ class Attributes
     /**
      * Ensure array
      * 
-     * @param mixed The value
+     * @param mixed $value The value
      * @return array
      */         
     protected function ensureArray(mixed $value): array

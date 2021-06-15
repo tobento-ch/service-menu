@@ -28,9 +28,9 @@ class Link extends Item implements Taggable
     /**
      * Create a new Link
      *
-     * @param string
-     * @param string
-     * @param null|string|int
+     * @param string $url
+     * @param string $text
+     * @param null|string|int $id
      */
     public function __construct(
         protected string $url,

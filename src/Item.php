@@ -45,10 +45,10 @@ class Item implements ItemInterface
     /**
      * Create a new Item
      *
-     * @param string
-     * @param null|string|int
-     * @param null|string|int
-     * @param array
+     * @param string $text
+     * @param null|string|int $id
+     * @param null|string|int $parent
+     * @param bool $active
      */
     public function __construct(
         protected string $text,
@@ -70,7 +70,7 @@ class Item implements ItemInterface
     /**
      * Set the id.
      *
-     * @param string|int
+     * @param string|int $id
      * @return static $this
      */    
     public function id(string|int $id): static
@@ -82,7 +82,7 @@ class Item implements ItemInterface
     /**
      * Set the parent.
      *
-     * @return null|string|int
+     * @param null|string|int $parent
      * @return static $this
      */    
     public function parent(null|string|int $parent): static
@@ -94,7 +94,7 @@ class Item implements ItemInterface
     /**
      * Set if the item is active.
      *
-     * @param bool
+     * @param bool $active
      * @return static $this
      */    
     public function active(bool $active = true): static
@@ -116,7 +116,7 @@ class Item implements ItemInterface
     /**
      * Set if the item is disabled.
      *
-     * @param bool
+     * @param bool $disabled
      * @return static $this
      */    
     public function disabled(bool $disabled = true): static
@@ -138,7 +138,7 @@ class Item implements ItemInterface
     /**
      * Set the sort order
      *
-     * @return int
+     * @param int $order
      * @return static $this
      */    
     public function order(int $order): static
@@ -150,7 +150,7 @@ class Item implements ItemInterface
     /**
      * Set/Get the parent tag.
      *
-     * @param null|Tag
+     * @param null|Tag $tag
      * @return null|Tag
      */    
     public function parentTag(?Tag $tag = null): ?Tag
@@ -165,7 +165,7 @@ class Item implements ItemInterface
     /**
      * Set/Get the item tag.
      *
-     * @param null|Tag
+     * @param null|Tag $tag
      * @return Tag
      */    
     public function itemTag(?Tag $tag = null): Tag

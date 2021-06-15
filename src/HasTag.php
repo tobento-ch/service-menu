@@ -26,7 +26,7 @@ trait HasTag
     /**
      * Set the tag
      *
-     * @param Tag
+     * @param Tag $tag
      * @return void
      */    
     public function setTag(Tag $tag): void

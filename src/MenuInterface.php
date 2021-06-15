@@ -28,7 +28,7 @@ interface MenuInterface
     /**
      * Add an item
      *
-     * @param ItemInterface
+     * @param ItemInterface $item
      * @return static $this
      */
     public function add(ItemInterface $item): static;
@@ -36,8 +36,8 @@ interface MenuInterface
     /**
      * Adding items
      *
-     * @param array
-     * @param null|callable function(MenuInterface $menu, $item): void {}
+     * @param array $items
+     * @param null|callable $callback function(MenuInterface $menu, $item): void {}
      * @return static $this
      */
     public function many(array $items, ?callable $callback = null): static;
@@ -45,7 +45,7 @@ interface MenuInterface
     /**
      * Get an item
      *
-     * @param string|int
+     * @param string|int $id
      * @return null|ItemInterface
      */
     public function get(string|int $id): ?ItemInterface;
@@ -53,7 +53,7 @@ interface MenuInterface
     /**
      * Sorts the items.
      *
-     * @param callable
+     * @param callable $callback
      * @return static $this
      */    
     public function sort(callable $callback): static;
@@ -61,7 +61,7 @@ interface MenuInterface
     /**
      * Filter the items.
      * 
-     * @param callable
+     * @param callable $callable
      * @return static $this
      */
     public function filter(callable $callable): static;
@@ -69,7 +69,7 @@ interface MenuInterface
     /**
      * Iterate over all items
      *
-     * @param callable function(ItemInterface $item, MenuInterface $menu): void {}
+     * @param callable $callable function(ItemInterface $item, MenuInterface $menu): void {}
      * @return static $this
      */
     public function each(callable $callable): static;
@@ -77,8 +77,8 @@ interface MenuInterface
     /**
      * Callback for the given item id. Set it active for instance. 
      *
-     * @param string|int The item id
-     * @param callable function(ItemInterface $item, MenuInterface $menu): void {}
+     * @param string|int $id The item id
+     * @param callable $callable function(ItemInterface $item, MenuInterface $menu): void {}
      * @return static $this
      */
     public function on(string|int $id, callable $callable): static;
@@ -86,8 +86,8 @@ interface MenuInterface
     /**
      * Callback for the given item id and all it parents.
      *
-     * @param string|int The item id
-     * @param callable function(ItemInterface $item, MenuInterface $menu): void {}
+     * @param string|int $id The item id
+     * @param callable $callable function(ItemInterface $item, MenuInterface $menu): void {}
      * @return static $this
      */
     public function onParents(string|int $id, callable $callable): static;
@@ -95,7 +95,7 @@ interface MenuInterface
     /**
      * Add an item
      *
-     * @param string The text
+     * @param string $text The text
      * @return Item
      */
     public function item(string $text): Item;
@@ -103,8 +103,8 @@ interface MenuInterface
     /**
      * Add a link item
      *
-     * @param string The url
-     * @param string The text
+     * @param string $url The url
+     * @param string $text The text
      * @return Link
      */
     public function link(string $url, string $text): Link;
@@ -112,7 +112,7 @@ interface MenuInterface
     /**
      * Add a tag
      *
-     * @param string The tag name
+     * @param string $name The tag name
      * @return Tag
      */
     public function tag(string $name): Tag;
@@ -120,7 +120,7 @@ interface MenuInterface
     /**
      * Set the active menu by id.
      *
-     * @param string|int
+     * @param string|int $id
      * @return static $this
      */
     public function active(string|int $id): static;
@@ -128,7 +128,7 @@ interface MenuInterface
     /**
      * If to render subitems. If false, only active subitems are rendered.
      *
-     * @param bool
+     * @param bool $withSubitems
      * @return static $this
      */
     public function subitems(bool $withSubitems = true): static;  

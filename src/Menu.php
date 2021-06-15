@@ -63,7 +63,7 @@ class Menu implements MenuInterface
     /**
      * Create a new menu
      *
-     * @param string A menu name
+     * @param string $name A menu name
      */
     public function __construct(
         protected string $name
@@ -72,7 +72,7 @@ class Menu implements MenuInterface
     /**
      * Add an item
      *
-     * @param ItemInterface
+     * @param ItemInterface $item
      * @return static $this
      */
     public function add(ItemInterface $item): static
@@ -87,8 +87,8 @@ class Menu implements MenuInterface
     /**
      * Adding items
      *
-     * @param array
-     * @param null|callable function(MenuInterface $menu, $item): void {}
+     * @param array $items
+     * @param null|callable $callback function(MenuInterface $menu, $item): void {}
      * @return static $this
      */
     public function many(array $items, ?callable $callback = null): static
@@ -109,7 +109,7 @@ class Menu implements MenuInterface
     /**
      * Get an item
      *
-     * @param string|int
+     * @param string|int $id
      * @return null|ItemInterface
      */
     public function get(string|int $id): ?ItemInterface
@@ -122,7 +122,7 @@ class Menu implements MenuInterface
     /**
      * Sorts the items.
      *
-     * @param callable
+     * @param callable $callback
      * @return static $this
      */    
     public function sort(callable $callback): static
@@ -136,7 +136,7 @@ class Menu implements MenuInterface
     /**
      * Filter the items.
      * 
-     * @param callable
+     * @param callable $callable
      * @return static $this
      */
     public function filter(callable $callable): static
@@ -148,7 +148,7 @@ class Menu implements MenuInterface
     /**
      * Iterate over all items
      *
-     * @param callable function(ItemInterface $item, MenuInterface $menu): void {}
+     * @param callable $callable function(ItemInterface $item, MenuInterface $menu): void {}
      * @return static $this
      */
     public function each(callable $callable): static
@@ -160,8 +160,8 @@ class Menu implements MenuInterface
     /**
      * Callback for the given item id. Set it active for instance. 
      *
-     * @param string|int The item id
-     * @param callable function(ItemInterface $item, MenuInterface $menu): void {}
+     * @param string|int $id The item id
+     * @param callable $callable function(ItemInterface $item, MenuInterface $menu): void {}
      * @return static $this
      */
     public function on(string|int $id, callable $callable): static
@@ -173,8 +173,8 @@ class Menu implements MenuInterface
     /**
      * Callback for the given item id and all it parents.
      *
-     * @param string|int The item id
-     * @param callable function(ItemInterface $item, MenuInterface $menu): void {}
+     * @param string|int $id The item id
+     * @param callable $callable function(ItemInterface $item, MenuInterface $menu): void {}
      * @return static $this
      */
     public function onParents(string|int $id, callable $callable): static
@@ -186,7 +186,7 @@ class Menu implements MenuInterface
     /**
      * Add an item
      *
-     * @param string The text
+     * @param string $text The text
      * @return Item
      */
     public function item(string $text): Item
@@ -199,8 +199,8 @@ class Menu implements MenuInterface
     /**
      * Add a link item
      *
-     * @param string The url
-     * @param string The text
+     * @param string $url The url
+     * @param string $text The text
      * @return Link
      */
     public function link(string $url, string $text): Link
@@ -213,7 +213,7 @@ class Menu implements MenuInterface
     /**
      * Add a tag
      *
-     * @param string The tag name
+     * @param string $name The tag name
      * @return Tag
      */
     public function tag(string $name): Tag
@@ -224,7 +224,7 @@ class Menu implements MenuInterface
     /**
      * Set the active menu by id.
      *
-     * @param string|int
+     * @param string|int $id
      * @return static $this
      */
     public function active(string|int $id): static
@@ -241,7 +241,7 @@ class Menu implements MenuInterface
     /**
      * If to render subitems. If false, only active subitems are rendered.
      *
-     * @param bool
+     * @param bool $withSubitems
      * @return static $this
      */
     public function subitems(bool $withSubitems = true): static
@@ -400,7 +400,7 @@ class Menu implements MenuInterface
     /**
      * Handle a tag
      *
-     * @param Tag
+     * @param Tag $tag
      * @return Tag
      */
     protected function handleTag(Tag $tag): Tag
@@ -423,8 +423,8 @@ class Menu implements MenuInterface
     /**
      * Handle a tags
      *
-     * @param Tag The menu tag
-     * @param Tag The tree tag
+     * @param Tag $menuTag The menu tag
+     * @param Tag $tag The tree tag
      * @return Tag
      */
     protected function handleTags(Tag $menuTag, Tag $tag): Tag

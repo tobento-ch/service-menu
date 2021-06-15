@@ -31,7 +31,7 @@ class Menus implements MenusInterface
     /**
      * Create a new Menus collection
      *
-     * @param null|MenuFactoryInterface
+     * @param null|MenuFactoryInterface $menuFactory
      */
     public function __construct(
         ?MenuFactoryInterface $menuFactory = null
@@ -42,7 +42,7 @@ class Menus implements MenusInterface
     /**
      * Add a menu
      *
-     * @param MenuInterface
+     * @param MenuInterface $menu
      * @return static $this
      */
     public function add(MenuInterface $menu): static
@@ -54,7 +54,7 @@ class Menus implements MenusInterface
     /**
      * Get the menu or create it
      *
-     * @param string The menu name
+     * @param string $name The menu name
      * @return MenuInterface
      */
     public function menu(string $name): MenuInterface
@@ -65,7 +65,7 @@ class Menus implements MenusInterface
     /**
      * Get a menu
      *
-     * @param string The menu name
+     * @param string $name The menu name
      * @return null|MenuInterface
      */
     public function get(string $name): ?MenuInterface

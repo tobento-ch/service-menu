@@ -21,7 +21,7 @@ interface MenusInterface
     /**
      * Add a menu
      *
-     * @param MenuInterface
+     * @param MenuInterface $menu
      * @return static $this
      */
     public function add(MenuInterface $menu): static;
@@ -29,7 +29,7 @@ interface MenusInterface
     /**
      * Get the menu or create it
      *
-     * @param string The menu name
+     * @param string $name The menu name
      * @return MenuInterface
      */
     public function menu(string $name): MenuInterface;
@@ -37,7 +37,7 @@ interface MenusInterface
     /**
      * Get a menu
      *
-     * @param string The menu name
+     * @param string $name The menu name
      * @return null|MenuInterface
      */
     public function get(string $name): ?MenuInterface;

@@ -21,7 +21,7 @@ class MenuFactory implements MenuFactoryInterface
     /**
      * Create a new menu
      *
-     * @param string The menu name.
+     * @param string $name The menu name.
      * @return MenuInterface
      */
     public function createMenu(string $name): MenuInterface
