@@ -145,6 +145,16 @@ class Item implements ItemInterface
     {        
         $this->order = $order;
         return $this;
+    }
+
+    /**
+     * Get the order.
+     *
+     * @return int
+     */    
+    public function getOrder(): int
+    {
+        return $this->order;
     }    
     
     /**
