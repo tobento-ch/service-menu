@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tobento\Service\Validation\Test;
+namespace Tobento\Service\Menu\Test;
 
 use PHPUnit\Framework\TestCase;
 use Tobento\Service\Menu\Menu;
