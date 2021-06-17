@@ -310,7 +310,7 @@ $menu->item('form')->parent('contact');
 // set the form item active.
 $menu->active('form');
 
-// do no render any inactive tree items.
+// do not render any inactive tree items.
 $menu->subitems(false);
 ```
 
