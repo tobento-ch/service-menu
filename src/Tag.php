@@ -58,55 +58,55 @@ class Tag
      * Create a new Tag
      *
      * @param string $name The tag name such as 'li'
-     * @param string $content The tag content
+     * @param string $html The tag html content
      * @param null|Attributes $attributes
      * @param null|int $level The level depth of the tag
      */
     public function __construct(
         string $name,
-        string $content = '',
+        string $html = '',
         ?Attributes $attributes = null,
         ?int $level = null
     ){
         $this->name = $name;
-        $this->content = $content;
+        $this->content($html);
         $this->attributes = $attributes ?: new Attributes();
         $this->level = $level;
     }
     
     /**
-     * Set the content of the tag.
+     * Set the html content of the tag.
      *
-     * @param string $content
+     * @param string $html
      * @return static $this
      */    
-    public function content(string $content): static
+    public function content(string $html): static
     {
-        $this->content .= $content;
+        $this->content .= $html;
         return $this;
     }
 
     /**
-     * Prepend content.
+     * Prepend html content.
      *
-     * @param string $content
+     * @param string $html
      * @return static $this
      */    
-    public function prepend(string $content): static
+    public function prepend(string $html): static
     {
-        $this->prepend .= $content;
+        $this->prepend .= $html;
         return $this;
     }
     
     /**
-     * Append content.
+     * Append html content.
      *
-     * @param string $content
+     * @param string $html
      * @return static $this
      */    
-    public function append(string $content): static
+    public function append(string $html): static
     {
-        $this->append .= $content;
+        $this->append .= $html;
         return $this;
     }
  
@@ -165,11 +165,13 @@ class Tag
      */    
     public function open(): string
     {
+        $name = Str::esc($this->name);
+        
         if ($this->attributes->empty()) {
-            return "<{$this->name}>";
+            return "<{$name}>";
         }
 
-        return "<{$this->name} {$this->attributes}>";
+        return "<{$name} {$this->attributes}>";
     }
 
     /**
@@ -179,7 +181,9 @@ class Tag
      */    
     public function close(): string
     {
-        return "</{$this->name}>";
+        $name = Str::esc($this->name);
+        
+        return "</{$name}>";
     }
 
     /**

@@ -132,7 +132,7 @@ class MenuTagTest extends TestCase
         $menu->tag('ul')->attr('data-foo', '1');
         
         $this->assertEquals(
-            '<ul data-foo=\'["1","1"]\'><li>team</li></ul>',
+            '<ul data-foo=\'[&quot;1&quot;,&quot;1&quot;]\'><li>team</li></ul>',
             $menu->render()
         );        
     }
@@ -353,7 +353,7 @@ class MenuTagTest extends TestCase
         $menu->tag('li')->attr('data-foo', '1');
         
         $this->assertEquals(
-            '<ul><li data-foo=\'["1","1"]\'>team</li></ul>',
+            '<ul><li data-foo=\'[&quot;1&quot;,&quot;1&quot;]\'>team</li></ul>',
             $menu->render()
         );        
     }

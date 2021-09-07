@@ -200,7 +200,7 @@ class Item implements ItemInterface
     {
         $this->itemTag = null;
         
-        return $this->text;
+        return Str::esc($this->text);
     }
     
     /**

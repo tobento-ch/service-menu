@@ -464,14 +464,16 @@ var_dump($item->parentTag()); // NULL
 
 ### Escaping
 
-Be careful as no data gets escaped in any way.
-So do it by your own if you need to do so.
+Html escaping is done for you on rendering the menu. Except on the Tag class you will need to do it by yourself:
 
 ```php
-use Tobento\Service\Menu\Menu;
+use Tobento\Service\Menu\Tag;
 
-$menu = new Menu('footer');
-$menu->item(htmlspecialchars('contact', ENT_QUOTES, 'UTF-8'));
+$tag = new Tag('a', htmlspecialchars('html', ENT_QUOTES, 'UTF-8'));
+
+$tag->content(htmlspecialchars('html', ENT_QUOTES, 'UTF-8'));
+$tag->append(htmlspecialchars('html', ENT_QUOTES, 'UTF-8'));
+$tag->prepend(htmlspecialchars('html', ENT_QUOTES, 'UTF-8'));
 ```
 
 ## Menus

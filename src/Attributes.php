@@ -136,25 +136,25 @@ class Attributes
         foreach($this->attributes as $name => $value) {
             
             if (is_int($name)) {
-                $attributes[] = $value;
+                $attributes[] = Str::esc($value);
                 continue;
             }
             
             if (is_null($value) || $value === '') {
-                $attributes[] = $name;
+                $attributes[] = Str::esc($name);
                 continue;
             }
             
             if (is_array($value)) {
                 
                 if ($name === 'class') {
-                    $attributes[] = $name.'="'.implode(' ', array_unique($value)).'"';
+                    $attributes[] = Str::esc($name).'="'.Str::esc(implode(' ', array_unique($value))).'"';
                 } else {                    
-                    $attributes[] = $name."='".json_encode($value)."'";
+                    $attributes[] = Str::esc($name)."='".Str::esc(json_encode($value))."'";
                 }
                 
             } else {
-                $attributes[] = $name.'="'.$value.'"';
+                $attributes[] = Str::esc($name).'="'.Str::esc($value).'"';
             }
         }
 

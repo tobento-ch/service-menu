@@ -39,7 +39,7 @@ class Link extends Item implements Taggable
     ){        
         parent::__construct($text, $id);
         
-        $this->setTag(new Tag('a', $text));
+        $this->setTag(new Tag('a', Str::esc($text)));
     }
 
     /**
