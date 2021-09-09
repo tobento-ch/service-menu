@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Tobento\Service\Menu;
 
 use Tobento\Service\Treeable\TreeableAware;
+use Stringable;
 
 /**
  * Item
@@ -45,13 +46,13 @@ class Item implements ItemInterface
     /**
      * Create a new Item
      *
-     * @param string $text
+     * @param string|Stringable $text
      * @param null|string|int $id
      * @param null|string|int $parent
      * @param bool $active
      */
     public function __construct(
-        protected string $text,
+        protected string|Stringable $text,
         protected null|string|int $id = null,
         protected null|string|int $parent = null,
         protected bool $active = false

@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Tobento\Service\Menu;
 
+use Stringable;
+
 /**
  * MenuInterface
  */
@@ -95,19 +97,19 @@ interface MenuInterface
     /**
      * Add an item
      *
-     * @param string $text The text
+     * @param string|Stringable $text The text
      * @return Item
      */
-    public function item(string $text): Item;
+    public function item(string|Stringable $text): Item;
         
     /**
      * Add a link item
      *
-     * @param string $url The url
-     * @param string $text The text
+     * @param string|Stringable $url The url
+     * @param string|Stringable $text The text
      * @return Link
      */
-    public function link(string $url, string $text): Link;
+    public function link(string|Stringable $url, string|Stringable $text): Link;
     
     /**
      * Add a tag

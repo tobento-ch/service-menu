@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Tobento\Service\Menu;
 
+use Stringable;
+
 /**
  * Link
  */
@@ -28,13 +30,13 @@ class Link extends Item implements Taggable
     /**
      * Create a new Link
      *
-     * @param string $url
-     * @param string $text
+     * @param string|Stringable $url
+     * @param string|Stringable $text
      * @param null|string|int $id
      */
     public function __construct(
-        protected string $url,
-        string $text,
+        protected string|Stringable $url,
+        string|Stringable $text,
         null|string|int $id = null
     ){        
         parent::__construct($text, $id);

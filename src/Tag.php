@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Tobento\Service\Menu;
 
+use Stringable;
+
 /**
  * Tag
  */
@@ -58,13 +60,13 @@ class Tag
      * Create a new Tag
      *
      * @param string $name The tag name such as 'li'
-     * @param string $html The tag html content
+     * @param string|Stringable $html The tag html content
      * @param null|Attributes $attributes
      * @param null|int $level The level depth of the tag
      */
     public function __construct(
         string $name,
-        string $html = '',
+        string|Stringable $html = '',
         ?Attributes $attributes = null,
         ?int $level = null
     ){
@@ -77,10 +79,10 @@ class Tag
     /**
      * Set the html content of the tag.
      *
-     * @param string $html
+     * @param string|Stringable $html
      * @return static $this
      */    
-    public function content(string $html): static
+    public function content(string|Stringable $html): static
     {
         $this->content .= $html;
         return $this;
@@ -89,10 +91,10 @@ class Tag
     /**
      * Prepend html content.
      *
-     * @param string $html
+     * @param string|Stringable $html
      * @return static $this
      */    
-    public function prepend(string $html): static
+    public function prepend(string|Stringable $html): static
     {
         $this->prepend .= $html;
         return $this;
@@ -101,10 +103,10 @@ class Tag
     /**
      * Append html content.
      *
-     * @param string $html
+     * @param string|Stringable $html
      * @return static $this
      */    
-    public function append(string $html): static
+    public function append(string|Stringable $html): static
     {
         $this->append .= $html;
         return $this;
