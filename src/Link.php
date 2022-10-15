@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Tobento\Service\Menu;
 
+use Tobento\Service\Tag\Taggable;
+use Tobento\Service\Tag\HasTag;
 use Stringable;
 
 /**
@@ -20,12 +22,7 @@ use Stringable;
  */
 class Link extends Item implements Taggable
 {
-    use HasTag;
-    
-    /**
-     * @var Tag
-     */    
-    protected Tag $tag;    
+    use HasTag;    
         
     /**
      * Create a new Link
@@ -51,7 +48,7 @@ class Link extends Item implements Taggable
      */    
     public function url(): string
     {
-        return $this->url;
+        return (string)$this->url;
     }    
     
     /**
@@ -62,7 +59,7 @@ class Link extends Item implements Taggable
     public function render(): string
     {
         if (!empty($this->url)) {
-           $this->tag->attr('href', $this->url); 
+           $this->tag->attr('href', $this->url()); 
         }
         
         $this->itemTag = null;

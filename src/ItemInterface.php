@@ -23,18 +23,18 @@ interface ItemInterface extends Treeable
     /**
      * Set/Get the parent tag.
      *
-     * @param null|Tag $tag
-     * @return null|Tag
-     */    
-    public function parentTag(?Tag $tag = null): ?Tag;
+     * @param null|TagInterface $tag
+     * @return null|TagInterface
+     */
+    public function parentTag(null|TagInterface $tag = null): null|TagInterface;
 
     /**
      * Set/Get the item tag.
      *
-     * @param null|Tag $tag
-     * @return Tag
-     */    
-    public function itemTag(?Tag $tag = null): Tag;
+     * @param null|TagInterface $tag
+     * @return TagInterface
+     */
+    public function itemTag(null|TagInterface $tag = null): TagInterface;
 
     /**
      * Set if the item is active.

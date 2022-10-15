@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Tobento\Service\Menu;
 
+use Tobento\Service\Tag\Taggable;
 use Tobento\Service\Treeable\Tree;
 use Stringable;
 
@@ -215,9 +216,9 @@ class Menu implements MenuInterface
      * Add a tag
      *
      * @param string $name The tag name
-     * @return Tag
+     * @return TagInterface
      */
-    public function tag(string $name): Tag
+    public function tag(string $name): TagInterface
     {
         return $this->tags[$name][] = new Tag($name);
     }
@@ -244,6 +245,7 @@ class Menu implements MenuInterface
      *
      * @param bool $withSubitems
      * @return static $this
+     * @psalm-suppress UndefinedInterfaceMethod
      */
     public function subitems(bool $withSubitems = true): static
     {    
@@ -270,6 +272,7 @@ class Menu implements MenuInterface
      * Get the evaluated contents of the menu.
      *
      * @return string
+     * @psalm-suppress UndefinedInterfaceMethod
      */    
     public function render(): string
     {        
@@ -401,10 +404,10 @@ class Menu implements MenuInterface
     /**
      * Handle a tag
      *
-     * @param Tag $tag
-     * @return Tag
+     * @param TagInterface $tag
+     * @return TagInterface
      */
-    protected function handleTag(Tag $tag): Tag
+    protected function handleTag(TagInterface $tag): TagInterface
     {
         if (! array_key_exists($tag->getName(), $this->tags)) {
             return $tag;
@@ -424,11 +427,11 @@ class Menu implements MenuInterface
     /**
      * Handle a tags
      *
-     * @param Tag $menuTag The menu tag
-     * @param Tag $tag The tree tag
-     * @return Tag
+     * @param TagInterface $menuTag The menu tag
+     * @param TagInterface $tag The tree tag
+     * @return TagInterface
      */
-    protected function handleTags(Tag $menuTag, Tag $tag): Tag
+    protected function handleTags(TagInterface $menuTag, TagInterface $tag): TagInterface
     {        
         if ($menuTag->getHandler()) {
             $tag = call_user_func($menuTag->getHandler(), $tag);

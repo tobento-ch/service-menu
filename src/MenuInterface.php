@@ -115,9 +115,9 @@ interface MenuInterface
      * Add a tag
      *
      * @param string $name The tag name
-     * @return Tag
+     * @return TagInterface
      */
-    public function tag(string $name): Tag;
+    public function tag(string $name): TagInterface;
     
     /**
      * Set the active menu by id.

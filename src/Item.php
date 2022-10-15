@@ -34,14 +34,14 @@ class Item implements ItemInterface
     protected int $order = 0;
     
     /**
-     * @var null|Tag
+     * @var null|TagInterface
      */    
-    protected ?Tag $parentTag = null;
+    protected null|TagInterface $parentTag = null;
  
     /**
-     * @var null|Tag
+     * @var null|TagInterface
      */
-    protected ?Tag $itemTag = null;
+    protected null|TagInterface $itemTag = null;
     
     /**
      * Create a new Item
@@ -65,7 +65,7 @@ class Item implements ItemInterface
      */    
     public function text(): string
     {
-        return $this->text;
+        return (string)$this->text;
     }
     
     /**
@@ -161,10 +161,10 @@ class Item implements ItemInterface
     /**
      * Set/Get the parent tag.
      *
-     * @param null|Tag $tag
-     * @return null|Tag
-     */    
-    public function parentTag(?Tag $tag = null): ?Tag
+     * @param null|TagInterface $tag
+     * @return null|TagInterface
+     */
+    public function parentTag(null|TagInterface $tag = null): null|TagInterface
     {
         if (!is_null($tag)) {
             $this->parentTag = $tag;
@@ -176,10 +176,10 @@ class Item implements ItemInterface
     /**
      * Set/Get the item tag.
      *
-     * @param null|Tag $tag
-     * @return Tag
-     */    
-    public function itemTag(?Tag $tag = null): Tag
+     * @param null|TagInterface $tag
+     * @return TagInterface
+     */
+    public function itemTag(null|TagInterface $tag = null): TagInterface
     {
         if (!is_null($tag)) {
             $this->itemTag = $tag;
@@ -196,7 +196,7 @@ class Item implements ItemInterface
      * Get the evaluated contents of the item.
      *
      * @return string
-     */    
+     */
     public function render(): string
     {
         $this->itemTag = null;
@@ -211,7 +211,7 @@ class Item implements ItemInterface
      */
     public function getTreeId(): string|int
     {
-        return $this->id ?: $this->text;
+        return $this->id ?: $this->text();
     }
     
     /**

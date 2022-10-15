@@ -163,12 +163,12 @@ class MenuTagTest extends TestCase
         );        
     }
 
-    public function testTagUlAddAttrWithEmptyValue()
+    public function testTagUlAddAttrWithNoValue()
     {
         $menu = new Menu('footer');
         $menu->item('team');
         
-        $menu->tag('ul')->attr('disabled', '');
+        $menu->tag('ul')->attr('disabled');
         
         $this->assertEquals(
             '<ul disabled><li>team</li></ul>',
@@ -384,12 +384,12 @@ class MenuTagTest extends TestCase
         );        
     }
 
-    public function testTagLiAddAttrWithEmptyValue()
+    public function testTagLiAddAttrWithNoValue()
     {
         $menu = new Menu('footer');
         $menu->item('team');
         
-        $menu->tag('li')->attr('disabled', '');
+        $menu->tag('li')->attr('disabled');
         
         $this->assertEquals(
             '<ul><li disabled>team</li></ul>',
