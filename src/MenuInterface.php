@@ -155,4 +155,11 @@ interface MenuInterface
      * @return array The items
      */
     public function all(): array;
+    
+    /**
+     * Returns true if menu has items, otherwise false.
+     *
+     * @return bool
+     */
+    public function hasItems(): bool;
 }

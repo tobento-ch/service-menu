@@ -369,6 +369,16 @@ class Menu implements MenuInterface
     }
     
     /**
+     * Returns true if menu has items, otherwise false.
+     *
+     * @return bool
+     */
+    public function hasItems(): bool
+    {
+        return !empty($this->all());
+    }
+    
+    /**
      * Get the menu name
      *
      * @return string
@@ -432,7 +442,7 @@ class Menu implements MenuInterface
      * @return TagInterface
      */
     protected function handleTags(TagInterface $menuTag, TagInterface $tag): TagInterface
-    {        
+    {
         if ($menuTag->getHandler()) {
             $tag = call_user_func($menuTag->getHandler(), $tag);
         }
