@@ -331,6 +331,17 @@ class MenuTest extends TestCase
             $menu->all()
         );        
     }
+    
+    public function testHasItemsMethod()
+    {
+        $menu = new Menu('footer');
+        
+        $this->assertFalse($menu->hasItems());
+        
+        $about = $menu->item('about');
+        
+        $this->assertTrue($menu->hasItems());
+    }
 
     public function testMenuRenderMultipleTimes()
     {
