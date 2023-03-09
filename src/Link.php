@@ -45,11 +45,24 @@ class Link extends Item implements Taggable
      * Get the url.
      *
      * @return string
-     */    
+     */
     public function url(): string
     {
         return (string)$this->url;
-    }    
+    }
+    
+    /**
+     * Returns a new instance with the specified url.
+     *
+     * @param string|Stringable $url
+     * @return static
+     */    
+    public function withUrl(string|Stringable $url): static
+    {
+        $new = clone $this;
+        $new->url = $url;
+        return $new;
+    }
     
     /**
      * Get the evaluated contents of the item.
