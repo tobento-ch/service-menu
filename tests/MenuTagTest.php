@@ -24,7 +24,7 @@ use Tobento\Service\Menu\NullTag;
  * MenuTagTest tests
  */
 class MenuTagTest extends TestCase
-{
+{    
     public function testTagUlChangeToOl()
     {
         $menu = new Menu('footer');
@@ -58,6 +58,46 @@ class MenuTagTest extends TestCase
             $menu->render()
         );      
     }
+    
+    public function testTagUlChangeToOlWithAttributes()
+    {
+        $menu = new Menu('footer');
+        $menu->item('team')->parent('about');
+        $menu->item('phones')->parent('team');
+        $menu->item('about');
+        $menu->item('contact');
+        $menu->item('form')->parent('contact');
+
+        $menu->tag('ul')->handle(fn() => new Tag('ol'));
+        
+        // adds foo class to every ul tag.
+        $menu->tag('ul')->class('foo');
+        
+        $this->assertEquals(
+            '<ol class="foo"><li>about<ol class="foo"><li>team<ol class="foo"><li>phones</li></ol></li></ol></li><li>contact<ol class="foo"><li>form</li></ol></li></ol>',
+            $menu->render()
+        );      
+    }
+    
+    public function testTagUlChangeToOlWithSpecificLevelAttributes()
+    {
+        $menu = new Menu('footer');
+        $menu->item('team')->parent('about');
+        $menu->item('phones')->parent('team');
+        $menu->item('about');
+        $menu->item('contact');
+        $menu->item('form')->parent('contact');
+
+        $menu->tag('ul')->handle(fn(Tag $t) => (new Tag('ol'))->level($t->getLevel()));
+        
+        // adds foo class to every ul tag with level 1.
+        $menu->tag('ul')->level(1)->class('foo');
+        
+        $this->assertEquals(
+            '<ol><li>about<ol class="foo"><li>team<ol><li>phones</li></ol></li></ol></li><li>contact<ol class="foo"><li>form</li></ol></li></ol>',
+            $menu->render()
+        );      
+    }    
     
     public function testTagUlAndLiToNullTag()
     {
