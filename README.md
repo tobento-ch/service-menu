@@ -408,6 +408,10 @@ $menu->tag('li')->attr('data-foo', '1');
 // change every ul tag to ol tag.
 $menu->tag('ul')->handle(fn() => new Tag('ol'));
 
+// assign current level so that other
+// level tag attributes get assigned.
+$menu->tag('ul')->handle(fn(Tag $t) => (new Tag('ol'))->level($t->getLevel()));
+
 // change every ul tag to div tag.
 $menu->tag('ul')->handle(fn() => new Tag('div'));
 
