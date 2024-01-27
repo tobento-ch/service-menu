@@ -17,6 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Tobento\Service\Menu\Menu;
 use Tobento\Service\Menu\Item;
 use Tobento\Service\Menu\Link;
+use Tobento\Service\Menu\Html;
 
 /**
  * MenuTest tests
@@ -28,10 +29,11 @@ class MenuTest extends TestCase
         $menu = (new Menu('footer'))
             ->add(new Item('about us'))
             ->add(new Link('/contact', 'contact'))
-            ->add(new Item('team', null, 'about us'));
+            ->add(new Item('team', null, 'about us'))
+            ->add(new Html('<span>foo</span>'));
         
         $this->assertEquals(
-            '<ul><li>about us<ul><li>team</li></ul></li><li><a href="/contact">contact</a></li></ul>',
+            '<ul><li>about us<ul><li>team</li></ul></li><li><a href="/contact">contact</a></li><li><span>foo</span></li></ul>',
             $menu->render()
         );        
     }
