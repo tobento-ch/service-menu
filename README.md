@@ -95,10 +95,12 @@ Creating items with the add() method.
 use Tobento\Service\Menu\Menu;
 use Tobento\Service\Menu\Item;
 use Tobento\Service\Menu\Link;
+use Tobento\Service\Menu\Html;
 
 $menu = (new Menu('footer'))
     ->add(new Item('about us'))
-    ->add(new Link('/contact', 'contact'));
+    ->add(new Link('/contact', 'contact'))
+    ->add(new Html('html')); // must be escaped!
 ```
 
 Creating items with the build in item() and link() method.
