@@ -13,17 +13,13 @@ declare(strict_types=1);
 
 namespace Tobento\Service\Menu;
 
-use Tobento\Service\Tag\Taggable;
-use Tobento\Service\Tag\HasTag;
 use Stringable;
 
 /**
  * Link
  */
-class Link extends Item implements Taggable
+class Link extends Item
 {
-    use HasTag;    
-        
     /**
      * Create a new Link
      *
@@ -73,6 +69,10 @@ class Link extends Item implements Taggable
     {
         if (!empty($this->url)) {
            $this->tag->attr('href', $this->url()); 
+        }
+        
+        if ($this->getBadge()) {
+            $this->tag->append(html: $this->getBadge());
         }
         
         $this->itemTag = null;

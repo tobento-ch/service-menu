@@ -61,6 +61,11 @@ class Menu implements MenuInterface
      * @var bool
      */    
     protected bool $withSubitems = true;
+    
+    /**
+     * @var string
+     */    
+    protected string $iconPosition = 'left';
 
     /**
      * Create a new menu
@@ -119,7 +124,7 @@ class Menu implements MenuInterface
         $this->addLastItem();
         
         return $this->items[$id] ?? null;
-    }    
+    }
 
     /**
      * Sorts the items.
@@ -210,6 +215,19 @@ class Menu implements MenuInterface
         $this->addLastItem();
         
         return $this->item = new Link($url, $text);
+    }
+    
+    /**
+     * Add a html item
+     *
+     * @param string|Stringable $html
+     * @return Html
+     */
+    public function html(string|Stringable $html): Html
+    {
+        $this->addLastItem();
+        
+        return $this->item = new Html($html);
     }
     
     /**
@@ -386,7 +404,29 @@ class Menu implements MenuInterface
     public function name(): string
     {
         return $this->name;
-    }    
+    }
+    
+    /**
+     * Set the icon position.
+     *
+     * @param string $position
+     * @return static $this
+     */
+    public function iconPosition(string $position): static
+    {
+        $this->iconPosition = $position;
+        return $this;
+    }
+    
+    /**
+     * Returns the icon position.
+     *
+     * @return string
+     */
+    public function getIconPosition(): string
+    {
+        return $this->iconPosition;
+    }
         
     /**
      * Returns the string representation of the menu.

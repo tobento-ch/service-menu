@@ -14,11 +14,12 @@ declare(strict_types=1);
 namespace Tobento\Service\Menu;
 
 use Tobento\Service\Treeable\Treeable;
+use Tobento\Service\Tag\Taggable;
 
 /**
  * ItemInterface
  */
-interface ItemInterface extends Treeable
+interface ItemInterface extends Treeable, Taggable
 {
     /**
      * Set/Get the parent tag.
@@ -65,6 +66,20 @@ interface ItemInterface extends Treeable
      * @return bool
      */    
     public function isDisabled(): bool;
+    
+    /**
+     * Get the text.
+     *
+     * @return string
+     */    
+    public function text(): string;
+    
+    /**
+     * Get the icon.
+     *
+     * @return null|string
+     */
+    public function getIcon(): null|string;
     
     /**
      * Get the evaluated contents of the item.

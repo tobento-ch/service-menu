@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Tobento\Service\Menu;
 
 use Tobento\Service\Treeable\TreeableAware;
+use Tobento\Service\Tag\Attributes;
+use Tobento\Service\Tag\HasTag;
 use Stringable;
 
 /**
@@ -22,20 +24,31 @@ use Stringable;
 class Item implements ItemInterface
 {
     use TreeableAware;
+    use HasTag;
 
     /**
      * @var bool
-     */    
+     */
     protected bool $disabled = false;
     
     /**
      * @var int
-     */    
+     */
     protected int $order = 0;
     
     /**
+     * @var null|string
+     */
+    protected null|string $icon = null;
+    
+    /**
      * @var null|TagInterface
-     */    
+     */
+    protected null|TagInterface $badge = null;
+    
+    /**
+     * @var null|TagInterface
+     */
     protected null|TagInterface $parentTag = null;
  
     /**
@@ -56,7 +69,9 @@ class Item implements ItemInterface
         protected null|string|int $id = null,
         protected null|string|int $parent = null,
         protected bool $active = false
-    ) {}
+    ) {
+        $this->setTag(new NullTag(Str::esc($text)));
+    }
 
     /**
      * Get the text.
@@ -90,6 +105,78 @@ class Item implements ItemInterface
     {
         $this->parent = $parent;
         return $this;
+    }
+    
+    /**
+     * Set an icon.
+     *
+     * @param null|string $name
+     * @return static $this
+     */
+    public function icon(null|string $name): static
+    {
+        $this->icon = $name;
+        return $this;
+    }
+    
+    /**
+     * Get the icon.
+     *
+     * @return null|string
+     */
+    public function getIcon(): null|string
+    {
+        return $this->icon;
+    }
+    
+    /**
+     * Set an badge.
+     *
+     * @param null|string $text
+     * @param array $attributes
+     * @return static $this
+     */
+    public function badge(null|string $text, array $attributes = []): static
+    {
+        if (is_null($text)) {
+            $this->badge = null;
+            return $this;
+        }
+        
+        $attributes = new Attributes($attributes);
+        $attributes->add('class', 'badge');
+        
+        $badge = new Tag(
+            name: 'span',
+            html: Str::esc($text),
+            attributes: $attributes,
+        );
+        
+        $this->badge = $badge;
+        return $this;
+    }
+    
+    /**
+     * Set an badge only if the badge parameter is true.
+     *
+     * @param bool $badge
+     * @param null|string $text
+     * @param array $attributes
+     * @return static $this
+     */
+    public function badgeIf(bool $badge, null|string $text, array $attributes = []): static
+    {
+        return $badge ? $this->badge($text, $attributes) : $this;
+    }
+    
+    /**
+     * Get the badge.
+     *
+     * @return null|TagInterface
+     */    
+    public function getBadge(): null|TagInterface
+    {
+        return $this->badge;
     }
 
     /**
@@ -199,9 +286,13 @@ class Item implements ItemInterface
      */
     public function render(): string
     {
+        if ($this->getBadge()) {
+            $this->tag->append(html: $this->getBadge());
+        }
+        
         $this->itemTag = null;
         
-        return Str::esc($this->text);
+        return $this->tag->render();
     }
     
     /**

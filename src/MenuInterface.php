@@ -112,6 +112,14 @@ interface MenuInterface
     public function link(string|Stringable $url, string|Stringable $text): Link;
     
     /**
+     * Add a html item
+     *
+     * @param string|Stringable $html
+     * @return Html
+     */
+    public function html(string|Stringable $html): Html;
+    
+    /**
      * Add a tag
      *
      * @param string $name The tag name
@@ -133,7 +141,22 @@ interface MenuInterface
      * @param bool $withSubitems
      * @return static $this
      */
-    public function subitems(bool $withSubitems = true): static;  
+    public function subitems(bool $withSubitems = true): static;
+    
+    /**
+     * Set the icon position.
+     *
+     * @param string $position
+     * @return static $this
+     */
+    public function iconPosition(string $position): static;
+    
+    /**
+     * Returns the icon position.
+     *
+     * @return string
+     */
+    public function getIconPosition(): string;
 
     /**
      * Get the evaluated contents of the menu.

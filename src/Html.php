@@ -27,10 +27,12 @@ class Html extends Item
      * @param null|string|int $id
      */
     public function __construct(
-        protected string|Stringable $html,
-        null|string|int $id = null
-    ){
+        string|Stringable $html,
+        protected null|string|int $id = null,
+    ){        
         parent::__construct(strip_tags((string)$html), $id);
+        
+        $this->setTag(new NullTag($html));
     }
     
     /**
@@ -40,8 +42,12 @@ class Html extends Item
      */
     public function render(): string
     {
+        if ($this->getBadge()) {
+            $this->tag->append(html: $this->getBadge());
+        }
+        
         $this->itemTag = null;
         
-        return (string)$this->html;
+        return $this->tag->render();
     }
 }
