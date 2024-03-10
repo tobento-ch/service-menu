@@ -12,6 +12,8 @@ With the Menu Service you can build menus easily.
 	- [Menu](#menu)
         - [Creating menu items](#creating-menu-items)
         - [Creating subitems](#creating-subitems)
+        - [Icons](#icons)
+        - [Badges](#badges)
         - [Sorting items](#sorting-items)
         - [Iterating items](#iterating-items)
         - [On specific item](#on-specific-item)
@@ -103,7 +105,7 @@ $menu = (new Menu('footer'))
     ->add(new Html('html')); // must be escaped!
 ```
 
-Creating items with the build in item() and link() method.
+Creating items with the build in methods.
 
 ```php
 use Tobento\Service\Menu\Menu;
@@ -111,6 +113,7 @@ use Tobento\Service\Menu\Menu;
 $menu = new Menu('footer');
 $item = $menu->item('about us');
 $linkItem = $menu->link('/contact', 'contact');
+$htmlItem = $menu->html('html'); // must be escaped!
 ```
 
 Creating items with the many() method.
@@ -163,6 +166,95 @@ $menu = (new Menu('footer'))
 $menu = new Menu('footer');
 $menu->item('about us')->id('about');
 $menu->item('team')->parent('about');
+```
+
+### Icons
+
+```php
+use Tobento\Service\Menu\Menu;
+
+$menu = new Menu('header');
+$menu->link('/login', 'Login')->icon(name: 'login');
+
+// you may define a position for all icons:
+$menu->iconPosition('left');
+```
+
+**Creating Icons**
+
+By default, icons will not be created at all.
+
+A simple example how to create icons:
+
+```php
+use Tobento\Service\Menu\Str;
+
+$menu->each(static function($item, $menu) {
+    if (!$item->getIcon()) {
+        return $item;
+    }
+
+    $html = '<i class="fa-light fa-'.Str::esc($item->getIcon()).'"></i>';
+    
+    if ($menu->getIconPosition() === 'right') {
+        $item->tag()->append(html: $html);
+    } else {
+        $item->tag()->prepend(html: $html);
+    }
+    
+    return $item;
+});
+```
+
+**Creating Icons With The Icon Service**
+
+You may use the menu icon factory to create icons using the [Icon Service](https://github.com/tobento-ch/service-icon).
+
+```php
+use Tobento\Service\Menu\MenuIconsFactory;
+use Tobento\Service\Icon\IconsInterface;
+
+$menuFactory = new MenuIconsFactory(
+    icons: $icons, // IconsInterface
+);
+
+$menu = $menuFactory->createMenu(name: 'header');
+```
+
+### Badges
+
+Badges can be used to add additional information to a menu item:
+
+```php
+use Tobento\Service\Menu\Menu;
+
+$menu = new Menu('header');
+$menu->link('/invoices', 'Invoices')->badge(text: '10', attributes: ['title' => '10 new invoices']);
+```
+
+Will output:
+
+```html
+<ul>
+    <li><a href="/invoices">Invoices<span title="10 new invoices" class="badge">10</span></a></li>
+</ul>
+```
+
+**Bagde If**
+
+You may use the ```badgeIf``` method which renders badges only if the given ```badge``` parameter value validates to ```true```.
+
+```php
+use Tobento\Service\Menu\Menu;
+
+$invoiceCount = 10;
+
+$menu = new Menu('header');
+$menu->link('/invoices', 'Invoices')->badgeIf(
+    bagde: $invoiceCount > 0, // bool
+    text: (string)$invoiceCount,
+    attributes: [],
+);
 ```
 
 ### Sorting items
