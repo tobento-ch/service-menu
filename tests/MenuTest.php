@@ -65,12 +65,12 @@ class MenuTest extends TestCase
         );        
     }    
     
-    public function testMenuItemAndLinkMethod()
+    public function testMenuItemsMethod()
     {
         $menu = new Menu('footer');
         $menu->item('about us');
         $menu->link('/contact', 'contact');
-        $menu->item('team')->parent('about us');
+        $menu->html('team')->parent('about us');
         
         $this->assertEquals(
             '<ul><li>about us<ul><li>team</li></ul></li><li><a href="/contact">contact</a></li></ul>',
