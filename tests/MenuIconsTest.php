@@ -102,4 +102,20 @@ class MenuIconsTest extends TestCase
             $menu->render()
         );
     }
+    
+    public function testOnlyIconsAreRendered()
+    {
+        $menu = $this->createIconsMenuFactory()->createMenu(name: 'header');
+        $menu->item('foo')->icon('foo');
+        $menu->link('/bar', 'bar')->icon('bar');
+        $menu->html('baz')->icon('baz');
+        $menu->link('/noicon', 'noicon');
+        
+        $menu->onlyIcons();
+        
+        $this->assertSame(
+            '<ul><li><span class="icon icon-foo">FooIcon</span></li><li><a href="/bar"><span class="icon icon-bar">BarIcon</span></a></li><li><span class="icon icon-baz"></span></li><li><a href="/noicon">noicon</a></li></ul>',
+            $menu->render()
+        );
+    }
 }
