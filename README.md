@@ -221,6 +221,14 @@ $menuFactory = new MenuIconsFactory(
 $menu = $menuFactory->createMenu(name: 'header');
 ```
 
+**Render Only Icons**
+
+Use the ```onlyIcons``` method if you want to render the icons only:
+
+```php
+$menu->onlyIcons();
+```
+
 ### Badges
 
 Badges can be used to add additional information to a menu item:
