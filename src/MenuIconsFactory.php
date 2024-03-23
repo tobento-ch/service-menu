@@ -46,10 +46,14 @@ class MenuIconsFactory implements MenuFactoryInterface
                 return $item;
             }
             
-            $position = $menu->getIconPosition() === 'right' ? 'left': 'right';
+            if ($menu->getOnlyIcons()) {
+                $icon = $icons->get($item->getIcon());
+            } else {
+                $position = $menu->getIconPosition() === 'right' ? 'left': 'right';
 
-            $icon = $icons->get($item->getIcon())
-                ->label(text: $item->text(), position: $position);
+                $icon = $icons->get($item->getIcon())
+                    ->label(text: $item->text(), position: $position);
+            }
 
             $tag = $item->tag()->withHtml($icon->render());
             return $item->setTag($tag);
