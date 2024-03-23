@@ -63,6 +63,11 @@ class Menu implements MenuInterface
     protected bool $withSubitems = true;
     
     /**
+     * @var bool
+     */    
+    protected bool $onlyIcons = false;
+    
+    /**
      * @var string
      */    
     protected string $iconPosition = 'left';
@@ -404,6 +409,28 @@ class Menu implements MenuInterface
     public function name(): string
     {
         return $this->name;
+    }
+    
+    /**
+     * Set if to render only icons.
+     *
+     * @param bool $onlyIcons
+     * @return static $this
+     */
+    public function onlyIcons(bool $onlyIcons = true): static
+    {
+        $this->onlyIcons = $onlyIcons;
+        return $this;
+    }
+    
+    /**
+     * Returns true if to render only icons, otherwise false.
+     *
+     * @return bool
+     */
+    public function getOnlyIcons(): bool
+    {
+        return $this->onlyIcons;
     }
     
     /**

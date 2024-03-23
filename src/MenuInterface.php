@@ -144,6 +144,21 @@ interface MenuInterface
     public function subitems(bool $withSubitems = true): static;
     
     /**
+     * Set if to render only icons.
+     *
+     * @param bool $onlyIcons
+     * @return static $this
+     */
+    public function onlyIcons(bool $onlyIcons = true): static;
+    
+    /**
+     * Returns true if to render only icons, otherwise false.
+     *
+     * @return bool
+     */
+    public function getOnlyIcons(): bool;
+    
+    /**
      * Set the icon position.
      *
      * @param string $position
