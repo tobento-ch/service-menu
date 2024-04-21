@@ -75,7 +75,7 @@ class Link extends Item
             $this->tag->append(html: $this->getBadge());
         }
         
-        $this->itemTag = null;
+        $this->reset();
         
         return $this->tag->render();
     }        

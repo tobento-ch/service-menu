@@ -290,7 +290,7 @@ class Item implements ItemInterface
             $this->tag->append(html: $this->getBadge());
         }
         
-        $this->itemTag = null;
+        $this->reset();
         
         return $this->tag->render();
     }
@@ -313,5 +313,17 @@ class Item implements ItemInterface
     public function getTreeParent(): null|string|int
     {
         return $this->parent;
+    }
+    
+    /**
+     * Reset.
+     *
+     * @return void
+     */
+    protected function reset(): void
+    {
+        $this->itemTag = null;
+        $this->badge(null);
+        $this->icon(null);
     }
 }
