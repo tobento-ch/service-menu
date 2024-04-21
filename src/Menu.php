@@ -24,52 +24,52 @@ class Menu implements MenuInterface
 {    
     /**
      * @var array [ItemInterface, ...]
-     */    
+     */
     protected array $items = [];
 
     /**
      * @var null|ItemInterface
-     */    
+     */
     protected ?ItemInterface $item = null;    
 
     /**
      * @var array
-     */    
+     */
     protected array $tags = [];
 
     /**
      * @var array
-     */    
+     */
     protected array $each = []; 
     
     /**
      * @var array
-     */    
+     */
     protected array $on = [];
 
     /**
      * @var array
-     */    
+     */
     protected array $onParents = [];   
 
     /**
      * @var array Tree callables
-     */    
+     */
     protected array $tree = []; 
     
     /**
      * @var bool
-     */    
+     */
     protected bool $withSubitems = true;
     
     /**
      * @var bool
-     */    
+     */
     protected bool $onlyIcons = false;
     
     /**
      * @var string
-     */    
+     */
     protected string $iconPosition = 'left';
 
     /**
@@ -136,7 +136,7 @@ class Menu implements MenuInterface
      *
      * @param callable $callback
      * @return static $this
-     */    
+     */
     public function sort(callable $callback): static
     {
         $this->items = $this->all();
