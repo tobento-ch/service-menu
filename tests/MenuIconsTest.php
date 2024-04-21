@@ -118,4 +118,20 @@ class MenuIconsTest extends TestCase
             $menu->render()
         );
     }
+    
+    public function testIconsAreRenderedOnce()
+    {
+        $menu = $this->createIconsMenuFactory()->createMenu(name: 'header');
+        $menu->item('foo')->icon('foo');
+        
+        $this->assertSame(
+            '<ul><li><span class="icon icon-foo">FooIcon<span class="icon-label">foo</span></span></li></ul>',
+            $menu->render()
+        );
+        
+        $this->assertSame(
+            '<ul><li><span class="icon icon-foo">FooIcon<span class="icon-label">foo</span></span></li></ul>',
+            $menu->render()
+        );
+    }
 }

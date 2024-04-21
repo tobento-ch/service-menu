@@ -98,4 +98,20 @@ class MenuBadgesTest extends TestCase
             $menu->render()
         );
     }
+    
+    public function testBadgeIsRenderedOnce()
+    {
+        $menu = new Menu('header');
+        $menu->link('/foo', 'Foo')->badge(text: 'new');
+        
+        $this->assertSame(
+            '<ul><li><a href="/foo">Foo<span class="badge">new</span></a></li></ul>',
+            $menu->render()
+        );
+        
+        $this->assertSame(
+            '<ul><li><a href="/foo">Foo<span class="badge">new</span></a></li></ul>',
+            $menu->render()
+        );
+    }
 }
