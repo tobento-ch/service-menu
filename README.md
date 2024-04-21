@@ -248,7 +248,7 @@ Will output:
 </ul>
 ```
 
-**Bagde If**
+**Badge If**
 
 You may use the ```badgeIf``` method which renders badges only if the given ```badge``` parameter value validates to ```true```.
 
@@ -259,7 +259,7 @@ $invoiceCount = 10;
 
 $menu = new Menu('header');
 $menu->link('/invoices', 'Invoices')->badgeIf(
-    bagde: $invoiceCount > 0, // bool
+    badge: $invoiceCount > 0, // bool
     text: (string)$invoiceCount,
     attributes: [],
 );
@@ -552,7 +552,6 @@ $attributes->merge('data-foo', '1');
 
 ```php
 use Tobento\Service\Menu\Menu;
-use Tobento\Service\Menu\Taggable;
 
 $menu = new Menu('footer');
 $item = $menu->link('/contact', 'contact');
@@ -560,7 +559,7 @@ $item = $menu->link('/contact', 'contact');
 // The item tag.
 $item->itemTag()->class('bar');
 
-// link items implements the Taggable interface, meaning it has a own tag. The a tag.
+// The tag: link items have for instance its own tag. The a tag.
 $item->tag()->class('foo');
 
 // The parent tag is not yet available.
@@ -644,7 +643,6 @@ $menu->on('form', function($item, $menu) {
 
 ```php
 use Tobento\Service\Menu\Menu;
-use Tobento\Service\Menu\Taggable;
 
 $menu = new Menu('footer');
 $menu->item('team')->parent('about');
@@ -660,9 +658,7 @@ $menu->onParents('form', function($item, $menu) {
         $item->parentTag()->class('active');
     }
     
-    if ($item instanceof Taggable) {
-        $item->tag()->class('active');
-    }
+    $item->tag()->class('active');
     
     return $item;
 });
