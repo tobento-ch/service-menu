@@ -464,6 +464,20 @@ class Menu implements MenuInterface
     {
         return $this->render();
     }
+    
+    /**
+     * Clone menu.
+     */
+    public function __clone()
+    {
+        $this->addLastItem();
+        
+        foreach($this->items as $index => $item) {
+            $newItem = clone $item;
+            $newItem->setTag(clone $newItem->tag());
+            $this->items[$index] = $newItem;
+        }
+    }
 
     /**
      * Adds the last item
