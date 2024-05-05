@@ -366,5 +366,24 @@ class MenuTest extends TestCase
             '<ul><li>about us<ul><li>team</li></ul></li><li><a href="/contact">contact</a></li></ul>',
             $menu->render()
         ); 
-    }    
+    }
+    
+    public function testMenuClone()
+    {
+        $menu = new Menu('header');
+        $menu->link('/invoices', 'Invoices')->badge(text: '10');
+        
+        $clonedMenu = clone $menu;
+        $clonedMenu->tag('a')->attr('data-foo', 'foo');
+        
+        $this->assertEquals(
+            '<ul><li><a data-foo="foo" href="/invoices">Invoices<span class="badge">10</span></a></li></ul>',
+            $clonedMenu->render()
+        );
+        
+        $this->assertEquals(
+            '<ul><li><a href="/invoices">Invoices<span class="badge">10</span></a></li></ul>',
+            $menu->render()
+        );
+    }
 }
