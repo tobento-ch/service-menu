@@ -23,7 +23,7 @@ use Stringable;
 class Menu implements MenuInterface
 {    
     /**
-     * @var array [ItemInterface, ...]
+     * @var array<array-key, ItemInterface>
      */
     protected array $items = [];
 
