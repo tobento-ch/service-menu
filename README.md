@@ -12,6 +12,7 @@ With the Menu Service you can build menus easily.
 	- [Menu](#menu)
         - [Creating menu items](#creating-menu-items)
         - [Creating subitems](#creating-subitems)
+        - [Additional menu items](#additional-menu-items)
         - [Icons](#icons)
         - [Badges](#badges)
         - [Sorting items](#sorting-items)
@@ -166,6 +167,21 @@ $menu = (new Menu('footer'))
 $menu = new Menu('footer');
 $menu->item('about us')->id('about');
 $menu->item('team')->parent('about');
+```
+
+### Additional menu items
+
+**Link To First Child**
+
+The ```LinkToFirstChild``` menu item, links to the first child menu link if exists, otherwise it will not be rendered at all. 
+
+```php
+use Tobento\Service\Menu\LinkToFirstChild;
+use Tobento\Service\Menu\Menu;
+
+$menu = new Menu('main');
+$menu->add((new LinkToFirstChild($menu, 'Settings'))->id('settings'));
+$menu->link('/locales', 'locales')->parent('settings');
 ```
 
 ### Icons
