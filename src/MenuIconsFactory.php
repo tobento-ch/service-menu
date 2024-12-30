@@ -53,6 +53,12 @@ class MenuIconsFactory implements MenuFactoryInterface
 
                 $icon = $icons->get($item->getIcon())
                     ->label(text: $item->text(), position: $position);
+                
+                if ($item instanceof Html) {
+                    $html = str_replace($item->text(), $icon->render(), $item->tag()->getHtml());
+                    $tag = $item->tag()->withHtml($html);
+                    return $item->setTag($tag);
+                }
             }
 
             $tag = $item->tag()->withHtml($icon->render());
