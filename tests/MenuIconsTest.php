@@ -134,4 +134,15 @@ class MenuIconsTest extends TestCase
             $menu->render()
         );
     }
+    
+    public function testIconsRenderedUsingHtml()
+    {
+        $menu = $this->createIconsMenuFactory()->createMenu(name: 'header');
+        $menu->html('<p>baz</p>')->icon('baz');
+        
+        $this->assertSame(
+            '<ul><li><p><span class="icon icon-baz"><span class="icon-label">baz</span></span></p></li></ul>',
+            $menu->render()
+        );
+    }
 }
