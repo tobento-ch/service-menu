@@ -38,7 +38,7 @@ composer require tobento/service-menu
 
 ## Requirements
 
-- PHP 8.0 or greater
+- PHP 8.4 or greater
 
 ## Highlights
 
@@ -54,7 +54,7 @@ use Tobento\Service\Menu\Menu;
 use Tobento\Service\Menu\Item;
 use Tobento\Service\Menu\Link;
 
-$menu = (new Menu('footer'))
+$menu = new Menu('footer')
     ->add(new Item('about us'))
     ->add(new Link('/contact', 'contact'))
     ->add(new Item('team', null, 'about us'));
@@ -100,7 +100,7 @@ use Tobento\Service\Menu\Item;
 use Tobento\Service\Menu\Link;
 use Tobento\Service\Menu\Html;
 
-$menu = (new Menu('footer'))
+$menu = new Menu('footer')
     ->add(new Item('about us'))
     ->add(new Link('/contact', 'contact'))
     ->add(new Html('html')); // must be escaped!
@@ -135,7 +135,7 @@ $items = [
     ],    
 ];
 
-$menu = (new Menu('footer'))->many($items, function($menu, $item) {
+$menu = new Menu('footer')->many($items, function($menu, $item) {
     
     $menu->link('/'.$item['name'], $item['name'])
          ->parent($item['parent'] ?? null);
@@ -151,7 +151,7 @@ use Tobento\Service\Menu\Menu;
 use Tobento\Service\Menu\Item;
 use Tobento\Service\Menu\Link;
 
-$menu = (new Menu('footer'))
+$menu = new Menu('footer')
     ->add(new Item('about us'))
     ->add(new Item('team', parent: 'about us'));
 
@@ -160,7 +160,7 @@ $menu->item('about us');
 $menu->item('team')->parent('about us');
 
 // or by defining an id
-$menu = (new Menu('footer'))
+$menu = new Menu('footer')
     ->add(new Item('about us', id: 'about'))
     ->add(new Item('team', parent: 'about'));
     
@@ -180,7 +180,7 @@ use Tobento\Service\Menu\LinkToFirstChild;
 use Tobento\Service\Menu\Menu;
 
 $menu = new Menu('main');
-$menu->add((new LinkToFirstChild($menu, 'Settings'))->id('settings'));
+$menu->add(new LinkToFirstChild($menu, 'Settings')->id('settings'));
 $menu->link('/locales', 'locales')->parent('settings');
 ```
 
@@ -528,13 +528,13 @@ $menu->tag('ul')->handle(fn() => new Tag('ol'));
 
 // assign current level so that other
 // level tag attributes get assigned.
-$menu->tag('ul')->handle(fn(Tag $t) => (new Tag('ol'))->level($t->getLevel()));
+$menu->tag('ul')->handle(fn(Tag $t) => new Tag('ol')->level($t->getLevel()));
 
 // change every ul tag to div tag.
 $menu->tag('ul')->handle(fn() => new Tag('div'));
 
 // change every li tag to a null tag and prepend and append a character.
-$menu->tag('li')->handle(fn() => (new NullTag())->prepend('[')->append(']'));
+$menu->tag('li')->handle(fn() => new NullTag()->prepend('[')->append(']'));
 
 // get tag attributes.
 $attributes = $menu->tag('li')->attributes();
