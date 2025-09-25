@@ -55,12 +55,7 @@ class Menu implements MenuInterface
     /**
      * @var array Tree callables
      */
-    protected array $tree = []; 
-    
-    /**
-     * @var bool
-     */
-    protected bool $withSubitems = true;
+    protected array $tree = [];
     
     /**
      * @var bool
